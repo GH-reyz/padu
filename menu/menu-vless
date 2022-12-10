@@ -1,0 +1,977 @@
+#!/bin/bash
+#wget https://github.com/${GitUser}/
+GitUser="jiwakentantal"
+#IZIN SCRIPT
+MYIP=$(curl -sS ipv4.icanhazip.com)
+echo -e "\e[32mloading...\e[0m"
+clear
+# Valid Script
+VALIDITY () {
+    today=`date -d "0 days" +"%Y-%m-%d"`
+    Exp1=$(curl https://raw.githubusercontent.com/${GitUser}/allow/main/ipvps.conf | grep $MYIP | awk '{print $4}')
+    if [[ $today < $Exp1 ]]; then
+    echo -e "\e[32mYOUR SCRIPT ACTIVE..\e[0m"
+    else
+    echo -e "\e[31mYOUR SCRIPT HAS EXPIRED!\e[0m";
+    echo -e "\e[31mPlease renew your ipvps first\e[0m"
+    exit 0
+fi
+}
+IZIN=$(curl https://raw.githubusercontent.com/${GitUser}/allow/main/ipvps.conf | awk '{print $5}' | grep $MYIP)
+if [ $MYIP = $IZIN ]; then
+echo -e "\e[32mPermission Accepted...\e[0m"
+VALIDITY
+else
+echo -e "\e[31mPermission Denied!\e[0m";
+echo -e "\e[31mPlease buy script first\e[0m"
+exit 0
+fi
+echo -e "\e[32mloading...\e[0m"
+clear
+# PROVIDED
+creditt=$(cat /root/user)
+# BANNER COLOUR
+banner_colour=$(cat /etc/banner)
+# TEXT ON BOX COLOUR
+box=$(cat /etc/box)
+# LINE COLOUR
+line=$(cat /etc/line)
+# TEXT COLOUR ON TOP
+text=$(cat /etc/text)
+# TEXT COLOUR BELOW
+below=$(cat /etc/below)
+# BACKGROUND TEXT COLOUR
+back_text=$(cat /etc/back)
+# NUMBER COLOUR
+number=$(cat /etc/number)
+# TOTAL ACC CREATE VMESS WS
+total1=$(grep -c -E "^#vms " "/usr/local/etc/xray/config.json")
+# TOTAL ACC CREATE  VLESS WS
+total2=$(grep -c -E "^#vls " "/usr/local/etc/xray/config.json")
+# TOTAL ACC CREATE  VLESS TCP XTLS
+total3=$(grep -c -E "^#vxtls " "/usr/local/etc/xray/config.json")
+MYIP=$(wget -qO- ifconfig.me/ip);
+domain=$(cat /usr/local/etc/xray/domain)
+
+# FUCTION ADD USER
+function menu1 () {
+clear
+tls="$(cat ~/log-install.txt | grep -w "VLESS WS TLS" | cut -d: -f2|sed 's/ //g')"
+none="$(cat ~/log-install.txt | grep -w "VLESS WS None TLS" | cut -d: -f2|sed 's/ //g')"
+until [[ $user =~ ^[a-zA-Z0-9_]+$ && ${CLIENT_EXISTS} == '0' ]]; do
+		echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+        echo -e "\E[0;41;36m     Add XRAY Vless WS Account     \E[0m"
+        echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+
+		read -rp "Username : " -e user
+		CLIENT_EXISTS=$(grep -w $user /usr/local/etc/xray/vless.json | wc -l)
+
+		if [[ ${CLIENT_EXISTS} == '1' ]]; then
+clear
+		    echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+            echo -e "\E[0;41;36m      Add XRAY Vless Account       \E[0m"
+            echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+			echo ""
+			echo "A client with the specified name was already created, please choose another name."
+			echo ""
+			read -n 1 -s -r -p "Press any key to back on menu"
+			menu
+		fi
+	done
+
+read -p "Bug Address (Example: www.google.com) : " address
+read -p "Bug SNI/Host (Example : m.facebook.com) : " hst
+read -p "Expired (days) : " masaaktif
+bug_addr=${address}.
+bug_addr2=${address}
+if [[ $address == "" ]]; then
+sts=$bug_addr2
+else
+sts=$bug_addr
+fi
+bug=${hst}
+bug2=bug.com
+if [[ $hst == "" ]]; then
+sni=$bug2
+else
+sni=$bug
+fi
+
+uuid=$(cat /proc/sys/kernel/random/uuid)
+exp=`date -d "$masaaktif days" +"%Y-%m-%d"`
+hariini=`date -d "0 days" +"%Y-%m-%d"`
+
+sed -i '/#tls$/a\### '"$user $exp"'\
+},{"id": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/vless.json
+sed -i '/#none$/a\### '"$user $exp"'\
+},{"id": "'""$uuid""'","email": "'""$user""'"' /usr/local/etc/xray/vnone.json
+
+# Restart Service
+systemctl restart xray@vless.service
+systemctl restart xray@vnone.service
+service cron restart
+
+vlesslink1="vless://${uuid}@${sts}${domain}:${tls}?type=ws&encryption=none&security=tls&host=${domain}&path=/vless-tls&allowInsecure=1&sni=${sni}#${user}"
+vlesslink2="vless://${uuid}@${sts}${domain}:${none}?type=ws&encryption=none&security=none&host=${domain}&path=/vless-ntls#${user}"
+vlesslink3="vless://${uuid}@104.17.113.188:${tls}?type=ws&encryption=none&security=tls&host=${domain}&path=wss://who.int/vless-tls&allowInsecure=1&sni=who.int#${user}"
+vlesslink4="vless://${uuid}@162.159.134.61:${none}?type=ws&encryption=none&security=none&host=${domain}&path=/vless-ntls#${user}"
+
+cat > /usr/local/etc/xray/$user-VLESS-TLS.yaml <<EOF
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7895
+ipv6: false
+mode: rule
+log-level: silent
+allow-lan: true
+external-controller: 0.0.0.0:9090
+secret: ""
+bind-address: "*"
+unified-delay: true
+profile:
+  store-selected: true
+  store-fake-ip: true
+dns:
+  enable: true
+  ipv6: false
+  use-host: true
+  enhanced-mode: fake-ip
+  listen: 0.0.0.0:7874
+  nameserver:
+    - 8.8.8.8
+    - 1.0.0.1
+    - https://dns.google/dns-query
+  fallback:
+    - 1.1.1.1
+    - 8.8.4.4
+    - https://cloudflare-dns.com/dns-query
+    - 112.215.203.254
+  default-nameserver:
+    - 8.8.8.8
+    - 1.1.1.1
+    - 112.215.203.254
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - time.*.com
+    - time.*.gov
+    - time.*.edu.cn
+    - time.*.apple.com
+    - time1.*.com
+    - time2.*.com
+    - time3.*.com
+    - time4.*.com
+    - time5.*.com
+    - time6.*.com
+    - time7.*.com
+    - ntp.*.com
+    - ntp1.*.com
+    - ntp2.*.com
+    - ntp3.*.com
+    - ntp4.*.com
+    - ntp5.*.com
+    - ntp6.*.com
+    - ntp7.*.com
+    - "*.time.edu.cn"
+    - "*.ntp.org.cn"
+    - +.pool.ntp.org
+    - time1.cloud.tencent.com
+    - music.163.com
+    - "*.music.163.com"
+    - "*.126.net"
+    - musicapi.taihe.com
+    - music.taihe.com
+    - songsearch.kugou.com
+    - trackercdn.kugou.com
+    - "*.kuwo.cn"
+    - api-jooxtt.sanook.com
+    - api.joox.com
+    - joox.com
+    - y.qq.com
+    - "*.y.qq.com"
+    - streamoc.music.tc.qq.com
+    - mobileoc.music.tc.qq.com
+    - isure.stream.qqmusic.qq.com
+    - dl.stream.qqmusic.qq.com
+    - aqqmusic.tc.qq.com
+    - amobile.music.tc.qq.com
+    - "*.xiami.com"
+    - "*.music.migu.cn"
+    - music.migu.cn
+    - "*.msftconnecttest.com"
+    - "*.msftncsi.com"
+    - msftconnecttest.com
+    - msftncsi.com
+    - localhost.ptlogin2.qq.com
+    - localhost.sec.qq.com
+    - +.srv.nintendo.net
+    - +.stun.playstation.net
+    - xbox.*.microsoft.com
+    - xnotify.xboxlive.com
+    - +.battlenet.com.cn
+    - +.wotgame.cn
+    - +.wggames.cn
+    - +.wowsgame.cn
+    - +.wargaming.net
+    - proxy.golang.org
+    - stun.*.*
+    - stun.*.*.*
+    - +.stun.*.*
+    - +.stun.*.*.*
+    - +.stun.*.*.*.*
+    - heartbeat.belkin.com
+    - "*.linksys.com"
+    - "*.linksyssmartwifi.com"
+    - "*.router.asus.com"
+    - mesu.apple.com
+    - swscan.apple.com
+    - swquery.apple.com
+    - swdownload.apple.com
+    - swcdn.apple.com
+    - swdist.apple.com
+    - lens.l.google.com
+    - stun.l.google.com
+    - +.nflxvideo.net
+    - "*.square-enix.com"
+    - "*.finalfantasyxiv.com"
+    - "*.ffxiv.com"
+    - "*.mcdn.bilivideo.cn"
+    - +.media.dssott.com
+proxies:
+  - name: XRAY_VLESS_TLS_${user}
+    server: ${sts}${domain}
+    port: ${tls}
+    type: vless
+    uuid: ${uuid}
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: ${sni}
+    network: ws
+    ws-opts:
+      path: /vless-tls
+      headers:
+        Host: ${domain}
+    udp: true
+proxy-groups:
+  - name: PAKYAVPN-AUTOSCRIPT
+    type: select
+    proxies:
+      - XRAY_VLESS_TLS_${user}
+      - DIRECT
+rules:
+  - MATCH,PAKYAVPN-AUTOSCRIPT
+EOF
+
+cat > /usr/local/etc/xray/$user-VLESS-NTLS.yaml <<EOF
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7895
+ipv6: false
+mode: rule
+log-level: silent
+allow-lan: true
+external-controller: 0.0.0.0:9090
+secret: ""
+bind-address: "*"
+unified-delay: true
+profile:
+  store-selected: true
+  store-fake-ip: true
+dns:
+  enable: true
+  ipv6: false
+  use-host: true
+  enhanced-mode: fake-ip
+  listen: 0.0.0.0:7874
+  nameserver:
+    - 8.8.8.8
+    - 1.0.0.1
+    - https://dns.google/dns-query
+  fallback:
+    - 1.1.1.1
+    - 8.8.4.4
+    - https://cloudflare-dns.com/dns-query
+    - 112.215.203.254
+  default-nameserver:
+    - 8.8.8.8
+    - 1.1.1.1
+    - 112.215.203.254
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - time.*.com
+    - time.*.gov
+    - time.*.edu.cn
+    - time.*.apple.com
+    - time1.*.com
+    - time2.*.com
+    - time3.*.com
+    - time4.*.com
+    - time5.*.com
+    - time6.*.com
+    - time7.*.com
+    - ntp.*.com
+    - ntp1.*.com
+    - ntp2.*.com
+    - ntp3.*.com
+    - ntp4.*.com
+    - ntp5.*.com
+    - ntp6.*.com
+    - ntp7.*.com
+    - "*.time.edu.cn"
+    - "*.ntp.org.cn"
+    - +.pool.ntp.org
+    - time1.cloud.tencent.com
+    - music.163.com
+    - "*.music.163.com"
+    - "*.126.net"
+    - musicapi.taihe.com
+    - music.taihe.com
+    - songsearch.kugou.com
+    - trackercdn.kugou.com
+    - "*.kuwo.cn"
+    - api-jooxtt.sanook.com
+    - api.joox.com
+    - joox.com
+    - y.qq.com
+    - "*.y.qq.com"
+    - streamoc.music.tc.qq.com
+    - mobileoc.music.tc.qq.com
+    - isure.stream.qqmusic.qq.com
+    - dl.stream.qqmusic.qq.com
+    - aqqmusic.tc.qq.com
+    - amobile.music.tc.qq.com
+    - "*.xiami.com"
+    - "*.music.migu.cn"
+    - music.migu.cn
+    - "*.msftconnecttest.com"
+    - "*.msftncsi.com"
+    - msftconnecttest.com
+    - msftncsi.com
+    - localhost.ptlogin2.qq.com
+    - localhost.sec.qq.com
+    - +.srv.nintendo.net
+    - +.stun.playstation.net
+    - xbox.*.microsoft.com
+    - xnotify.xboxlive.com
+    - +.battlenet.com.cn
+    - +.wotgame.cn
+    - +.wggames.cn
+    - +.wowsgame.cn
+    - +.wargaming.net
+    - proxy.golang.org
+    - stun.*.*
+    - stun.*.*.*
+    - +.stun.*.*
+    - +.stun.*.*.*
+    - +.stun.*.*.*.*
+    - heartbeat.belkin.com
+    - "*.linksys.com"
+    - "*.linksyssmartwifi.com"
+    - "*.router.asus.com"
+    - mesu.apple.com
+    - swscan.apple.com
+    - swquery.apple.com
+    - swdownload.apple.com
+    - swcdn.apple.com
+    - swdist.apple.com
+    - lens.l.google.com
+    - stun.l.google.com
+    - +.nflxvideo.net
+    - "*.square-enix.com"
+    - "*.finalfantasyxiv.com"
+    - "*.ffxiv.com"
+    - "*.mcdn.bilivideo.cn"
+    - +.media.dssott.com
+proxies:
+  - name: XRAY_VLESS_NON_TLS_${user}
+    server: ${sts}${domain}
+    port: ${none}
+    type: vless
+    uuid: ${uuid}
+    cipher: auto
+    tls: false
+    skip-cert-verify: true
+    servername: ${sni}
+    network: ws
+    ws-opts:
+      path: /vless-ntls
+      headers:
+        Host: ${domain}
+    udp: true
+proxy-groups:
+  - name: PAKYAVPN-AUTOSCRIPT
+    type: select
+    proxies:
+      - XRAY_VLESS_NON_TLS_${user}
+      - DIRECT
+rules:
+  - MATCH,PAKYAVPN-AUTOSCRIPT
+EOF
+
+cat > /usr/local/etc/xray/$user-VLMAXIS.yaml <<EOF
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7895
+ipv6: false
+mode: rule
+log-level: silent
+allow-lan: true
+external-controller: 0.0.0.0:9090
+secret: ""
+bind-address: "*"
+unified-delay: true
+profile:
+  store-selected: true
+  store-fake-ip: true
+dns:
+  enable: true
+  ipv6: false
+  use-host: true
+  enhanced-mode: fake-ip
+  listen: 0.0.0.0:7874
+  nameserver:
+    - 8.8.8.8
+    - 1.0.0.1
+    - https://dns.google/dns-query
+  fallback:
+    - 1.1.1.1
+    - 8.8.4.4
+    - https://cloudflare-dns.com/dns-query
+    - 112.215.203.254
+  default-nameserver:
+    - 8.8.8.8
+    - 1.1.1.1
+    - 112.215.203.254
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - time.*.com
+    - time.*.gov
+    - time.*.edu.cn
+    - time.*.apple.com
+    - time1.*.com
+    - time2.*.com
+    - time3.*.com
+    - time4.*.com
+    - time5.*.com
+    - time6.*.com
+    - time7.*.com
+    - ntp.*.com
+    - ntp1.*.com
+    - ntp2.*.com
+    - ntp3.*.com
+    - ntp4.*.com
+    - ntp5.*.com
+    - ntp6.*.com
+    - ntp7.*.com
+    - "*.time.edu.cn"
+    - "*.ntp.org.cn"
+    - +.pool.ntp.org
+    - time1.cloud.tencent.com
+    - music.163.com
+    - "*.music.163.com"
+    - "*.126.net"
+    - musicapi.taihe.com
+    - music.taihe.com
+    - songsearch.kugou.com
+    - trackercdn.kugou.com
+    - "*.kuwo.cn"
+    - api-jooxtt.sanook.com
+    - api.joox.com
+    - joox.com
+    - y.qq.com
+    - "*.y.qq.com"
+    - streamoc.music.tc.qq.com
+    - mobileoc.music.tc.qq.com
+    - isure.stream.qqmusic.qq.com
+    - dl.stream.qqmusic.qq.com
+    - aqqmusic.tc.qq.com
+    - amobile.music.tc.qq.com
+    - "*.xiami.com"
+    - "*.music.migu.cn"
+    - music.migu.cn
+    - "*.msftconnecttest.com"
+    - "*.msftncsi.com"
+    - msftconnecttest.com
+    - msftncsi.com
+    - localhost.ptlogin2.qq.com
+    - localhost.sec.qq.com
+    - +.srv.nintendo.net
+    - +.stun.playstation.net
+    - xbox.*.microsoft.com
+    - xnotify.xboxlive.com
+    - +.battlenet.com.cn
+    - +.wotgame.cn
+    - +.wggames.cn
+    - +.wowsgame.cn
+    - +.wargaming.net
+    - proxy.golang.org
+    - stun.*.*
+    - stun.*.*.*
+    - +.stun.*.*
+    - +.stun.*.*.*
+    - +.stun.*.*.*.*
+    - heartbeat.belkin.com
+    - "*.linksys.com"
+    - "*.linksyssmartwifi.com"
+    - "*.router.asus.com"
+    - mesu.apple.com
+    - swscan.apple.com
+    - swquery.apple.com
+    - swdownload.apple.com
+    - swcdn.apple.com
+    - swdist.apple.com
+    - lens.l.google.com
+    - stun.l.google.com
+    - +.nflxvideo.net
+    - "*.square-enix.com"
+    - "*.finalfantasyxiv.com"
+    - "*.ffxiv.com"
+    - "*.mcdn.bilivideo.cn"
+    - +.media.dssott.com
+proxies:
+  - name: XRAY_VLESS_MAXIS_${user}
+    server: 104.17.113.188
+    port: ${tls}
+    type: vless
+    uuid: ${uuid}
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: who.int
+    network: ws
+    ws-opts:
+      path: wss://who.int/vless-tls
+      headers:
+        Host: ${host}
+    udp: true
+proxy-groups:
+  - name: PAKYAVPN-AUTOSCRIPT
+    type: select
+    proxies:
+      - XRAY_VLESS_MAXIS_${user}
+      - DIRECT
+rules:
+  - MATCH,PAKYAVPN-AUTOSCRIPT
+EOF
+
+cat > /usr/local/etc/xray/$user-VLDIGI.yaml <<EOF
+port: 7890
+socks-port: 7891
+redir-port: 7892
+mixed-port: 7893
+tproxy-port: 7895
+ipv6: false
+mode: rule
+log-level: silent
+allow-lan: true
+external-controller: 0.0.0.0:9090
+secret: ""
+bind-address: "*"
+unified-delay: true
+profile:
+  store-selected: true
+  store-fake-ip: true
+dns:
+  enable: true
+  ipv6: false
+  use-host: true
+  enhanced-mode: fake-ip
+  listen: 0.0.0.0:7874
+  nameserver:
+    - 8.8.8.8
+    - 1.0.0.1
+    - https://dns.google/dns-query
+  fallback:
+    - 1.1.1.1
+    - 8.8.4.4
+    - https://cloudflare-dns.com/dns-query
+    - 112.215.203.254
+  default-nameserver:
+    - 8.8.8.8
+    - 1.1.1.1
+    - 112.215.203.254
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - time.*.com
+    - time.*.gov
+    - time.*.edu.cn
+    - time.*.apple.com
+    - time1.*.com
+    - time2.*.com
+    - time3.*.com
+    - time4.*.com
+    - time5.*.com
+    - time6.*.com
+    - time7.*.com
+    - ntp.*.com
+    - ntp1.*.com
+    - ntp2.*.com
+    - ntp3.*.com
+    - ntp4.*.com
+    - ntp5.*.com
+    - ntp6.*.com
+    - ntp7.*.com
+    - "*.time.edu.cn"
+    - "*.ntp.org.cn"
+    - +.pool.ntp.org
+    - time1.cloud.tencent.com
+    - music.163.com
+    - "*.music.163.com"
+    - "*.126.net"
+    - musicapi.taihe.com
+    - music.taihe.com
+    - songsearch.kugou.com
+    - trackercdn.kugou.com
+    - "*.kuwo.cn"
+    - api-jooxtt.sanook.com
+    - api.joox.com
+    - joox.com
+    - y.qq.com
+    - "*.y.qq.com"
+    - streamoc.music.tc.qq.com
+    - mobileoc.music.tc.qq.com
+    - isure.stream.qqmusic.qq.com
+    - dl.stream.qqmusic.qq.com
+    - aqqmusic.tc.qq.com
+    - amobile.music.tc.qq.com
+    - "*.xiami.com"
+    - "*.music.migu.cn"
+    - music.migu.cn
+    - "*.msftconnecttest.com"
+    - "*.msftncsi.com"
+    - msftconnecttest.com
+    - msftncsi.com
+    - localhost.ptlogin2.qq.com
+    - localhost.sec.qq.com
+    - +.srv.nintendo.net
+    - +.stun.playstation.net
+    - xbox.*.microsoft.com
+    - xnotify.xboxlive.com
+    - +.battlenet.com.cn
+    - +.wotgame.cn
+    - +.wggames.cn
+    - +.wowsgame.cn
+    - +.wargaming.net
+    - proxy.golang.org
+    - stun.*.*
+    - stun.*.*.*
+    - +.stun.*.*
+    - +.stun.*.*.*
+    - +.stun.*.*.*.*
+    - heartbeat.belkin.com
+    - "*.linksys.com"
+    - "*.linksyssmartwifi.com"
+    - "*.router.asus.com"
+    - mesu.apple.com
+    - swscan.apple.com
+    - swquery.apple.com
+    - swdownload.apple.com
+    - swcdn.apple.com
+    - swdist.apple.com
+    - lens.l.google.com
+    - stun.l.google.com
+    - +.nflxvideo.net
+    - "*.square-enix.com"
+    - "*.finalfantasyxiv.com"
+    - "*.ffxiv.com"
+    - "*.mcdn.bilivideo.cn"
+    - +.media.dssott.com
+proxies:
+  - name: XRAY_VLESS_DIGI_${user}
+    server: 162.159.134.61
+    port: ${none}
+    type: vless
+    uuid: ${uuid}
+    cipher: auto
+    tls: false
+    skip-cert-verify: true
+    servername: ${domain}
+    network: ws
+    ws-opts:
+      path: /vless-ntls
+      headers:
+        Host: ${domain}
+    udp: true
+proxy-groups:
+  - name: PAKYAVPN-AUTOSCRIPT
+    type: select
+    proxies:
+      - XRAY_VLESS_DIGI_${user}
+      - DIRECT
+rules:
+  - MATCH,PAKYAVPN-AUTOSCRIPT
+EOF
+
+# Move Yaml To html
+mv /usr/local/etc/xray/$user-VLESS-TLS.yaml /home/vps/public_html/$user-VLESS-TLS.yaml
+mv /usr/local/etc/xray/$user-VLESS-NTLS.yaml /home/vps/public_html/$user-VLESS-NTLS.yaml
+mv /usr/local/etc/xray/$user-VLMAXIS.yaml /home/vps/public_html/$user-VLMAXIS.yaml
+mv /usr/local/etc/xray/$user-VLDIGI.yaml /home/vps/public_html/$user-VLDIGI.yaml
+clear
+echo -e ""
+echo -e "════════════[XRAY VLESS WS]════════════"
+echo -e "Remarks           : ${user}"
+echo -e "Domain            : ${domain}"
+echo -e "Port TLS          : $tls"
+echo -e "Port None TLS     : $none"
+echo -e "ID                : ${uuid}"
+echo -e "Security          : TLS"
+echo -e "Encryption        : None"
+echo -e "Network           : WS"
+echo -e "Path TLS          : /vless-tls"
+echo -e "Path None TLS     : /vless-ntls"
+echo -e "═══════════════════════════════════════"
+echo -e "Link WS TLS       : ${vlesslink1}"
+echo -e "═══════════════════════════════════════"
+echo -e "Link WS None TLS  : ${vlesslink2}"
+echo -e "═══════════════════════════════════════"
+echo -e "Link (MAXIS)      : ${vlesslink3}"
+echo -e "═══════════════════════════════════════"
+echo -e "Link (DIGI)       : ${vlesslink4}"
+echo -e "═══════════════════════════════════════"
+echo -e "YAML WS TLS       : http://${domain}:81/$user-VLESS-TLS.yaml"
+echo -e "════════════════════════════════════════"
+echo -e "YAML WS None TLS  : http://${domain}:81/$user-VLESS-NTLS.yaml"
+echo -e "════════════════════════════════════════"
+echo -e "YAML (MAXIS)      : http://${domain}:81/$user-VLMAXIS.yaml"
+echo -e "════════════════════════════════════════"
+echo -e "YAML (DIGI)       : http://${domain}:81/$user-VLDIGI.yaml"
+echo -e "════════════════════════════════════════"
+echo -e "Created   : $harini"
+echo -e "Expired   : $exp"
+echo -e "Script By $creditt"
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
+}
+# TRIAL USER
+function menu2 () {
+clear
+
+}
+# FUCTION DELETE USER
+function menu3 () {
+clear
+NUMBER_OF_CLIENTS=$(grep -c -E "^### " "/usr/local/etc/xray/vless.json")
+	if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
+        echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+        echo -e "\\E[0;41;36m   Delete XRAY Vless WS Account    \E[0m"
+        echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+		echo ""
+		echo "You have no existing clients!"
+        echo ""
+		exit 1
+	fi
+    echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+    echo -e "\\E[0;41;36m   Delete XRAY Vless WS Account    \E[0m"
+    echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+	
+	echo " Select the existing client you want to remove"
+	echo " Press CTRL+C to return"
+	echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+	echo "     No  Expired   User"
+	grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 2-3 | nl -s ') '
+	until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
+		if [[ ${CLIENT_NUMBER} == '1' ]]; then
+			read -rp "Select one client [1]: " CLIENT_NUMBER
+		else
+			read -rp "Select one client [1-${NUMBER_OF_CLIENTS}]: " CLIENT_NUMBER
+		fi
+	done
+user=$(grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
+exp=$(grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 3 | sed -n "${CLIENT_NUMBER}"p)
+sed -i "/^### $user $exp/,/^},{/d" /usr/local/etc/xray/vless.json
+sed -i "/^### $user $exp/,/^},{/d" /usr/local/etc/xray/vnone.json
+rm -f /home/vps/public_html/$user-VLESS-TLS.yaml /home/vps/public_html/$user-VLESS-NTLS.yaml /home/vps/public_html/$user-VLMAXIS.yaml /home/vps/public_html/$user-VLDIGI.yaml
+systemctl restart xray@vless.service
+systemctl restart xray@vnone.service
+clear
+echo " XRAY Vless WS Account Deleted"
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo " Client Name : $user"
+echo " Expired On  : $exp"
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
+}
+# FUCTION RENEW USER
+function menu4 () {
+clear
+NUMBER_OF_CLIENTS=$(grep -c -E "^### " "/usr/local/etc/xray/vless.json")
+	if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
+		echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+        echo -e "\\E[0;41;36m   Renew XRAY Vless WS Account    \E[0m"
+        echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+		echo ""
+		echo "You have no existing clients!"
+        echo ""
+		exit 1
+	fi
+	echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+    echo -e "\\E[0;41;36m   Renew XRAY Vless WS Account    \E[0m"
+    echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+	echo "Select the existing client you want to renew"
+	echo " Press CTRL+C to return"
+	echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+	grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 2-3 | nl -s ') '
+	until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
+		if [[ ${CLIENT_NUMBER} == '1' ]]; then
+			read -rp "Select one client [1]: " CLIENT_NUMBER
+		else
+			read -rp "Select one client [1-${NUMBER_OF_CLIENTS}]: " CLIENT_NUMBER
+		fi
+	done
+read -p "Expired (days): " masaaktif
+user=$(grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
+exp=$(grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 3 | sed -n "${CLIENT_NUMBER}"p)
+now=$(date +%Y-%m-%d)
+d1=$(date -d "$exp" +%s)
+d2=$(date -d "$now" +%s)
+exp2=$(( (d1 - d2) / 86400 ))
+exp3=$(($exp2 + $masaaktif))
+exp4=`date -d "$exp3 days" +"%Y-%m-%d"`
+sed -i "s/### $user $exp/### $user $exp4/g" /usr/local/etc/xray/vless.json
+sed -i "s/### $user $exp/### $user $exp4/g" /usr/local/etc/xray/vnone.json
+systemctl restart xray@vless.service
+systemctl restart xray@vnone.service
+service cron restart
+clear
+echo ""
+echo " XRAY Vless WS Account Renewed"
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo " Client Name : $user"
+echo " Expired On  : $exp4"
+echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
+}
+# show user
+function menu5 () {
+clear
+NUMBER_OF_CLIENTS=$(grep -c -E "^### " "/usr/local/etc/xray/vless.json")
+        if [[ ${NUMBER_OF_CLIENTS} == '0' ]]; then
+                echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+                echo -e "\\E[0;41;36m    Check XRAY Vless WS Config     \E[0m"
+                echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+                echo ""
+                echo "You have no existing clients!"
+                clear
+                exit 1
+        fi
+
+        echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+        echo -e "\\E[0;41;36m    Check XRAY Vmess WS Config     \E[0m"
+        echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+        echo " Select the existing client to view the config"
+        echo " Press CTRL+C to return"
+		echo -e "\033[0;34m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m"
+        echo "     No  Expired   User"
+        grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 2-3 | nl -s ') '
+        until [[ ${CLIENT_NUMBER} -ge 1 && ${CLIENT_NUMBER} -le ${NUMBER_OF_CLIENTS} ]]; do
+                if [[ ${CLIENT_NUMBER} == '1' ]]; then
+                        read -rp "Select one client [1]: " CLIENT_NUMBER
+                else
+                        read -rp "Select one client [1-${NUMBER_OF_CLIENTS}]: " CLIENT_NUMBER
+                fi
+        done
+clear
+echo ""
+read -p "Bug Address (Example: www.google.com) : " address
+read -p "Bug SNI/Host (Example : m.facebook.com) : " hst
+bug_addr=${address}.
+bug_addr2=${address}
+if [[ $address == "" ]]; then
+sts=$bug_addr2
+else
+sts=$bug_addr
+fi
+bug=${hst}
+bug2=bug.com
+if [[ $hst == "" ]]; then
+sni=$bug2
+else
+sni=$bug
+fi
+
+user=$(grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 2 | sed -n "${CLIENT_NUMBER}"p)
+tls="$(cat ~/log-install.txt | grep -w "VLESS WS TLS" | cut -d: -f2|sed 's/ //g')"
+none="$(cat ~/log-install.txt | grep -w "VLESS WS None TLS" | cut -d: -f2|sed 's/ //g')"
+domain=$(cat /usr/local/etc/xray/domain)
+uuid=$(grep "},{" /usr/local/etc/xray/vless.json | cut -b 11-46 | sed -n "${CLIENT_NUMBER}"p)
+exp=$(grep -E "^### " "/usr/local/etc/xray/vless.json" | cut -d ' ' -f 3 | sed -n "${CLIENT_NUMBER}"p)
+hariini=`date -d "0 days" +"%Y-%m-%d"`
+
+vlesslink1="vless://${uuid}@${sts}${domain}:$tls?type=ws&encryption=none&security=tls&host=${domain}&path=/vless-tls&allowInsecure=1&sni=${sni}#XRAY_VLESS_TLS_${user}"
+vlesslink2="vless://${uuid}@${sts}${domain}:$none?type=ws&encryption=none&security=none&host=${domain}&path=/vless-ntls#XRAY_VLESS_NON_TLS_${user}"
+clear
+echo -e ""
+echo -e "════════════[XRAY VLESS WS]════════════"
+echo -e "Remarks           : ${user}"
+echo -e "Domain            : ${domain}"
+echo -e "Port TLS          : $tls"
+echo -e "Port None TLS     : $none"
+echo -e "ID                : ${uuid}"
+echo -e "Security          : TLS"
+echo -e "Encryption        : None"
+echo -e "Network           : WS"
+echo -e "Path TLS          : /vless-tls"
+echo -e "Path None TLS     : /vless-ntls"
+echo -e "═══════════════════════════════════════"
+echo -e "Link WS TLS       : ${vlesslink1}"
+echo -e "═══════════════════════════════════════"
+echo -e "Link WS None TLS  : ${vlesslink2}"
+echo -e "═══════════════════════════════════════"
+echo -e "YAML WS TLS       : http://${domain}:81/$user-VLESS-TLS.yaml"
+echo -e "════════════════════════════════════════"
+echo -e "YAML WS None TLS  : http://${domain}:81/$user-VLESS-NTLS.yaml"
+echo -e "════════════════════════════════════════"
+echo -e "Created On        : $hariini"
+echo -e "Expired On        : $exp"
+echo -e "════════════════════════════════════════"
+echo ""
+read -n 1 -s -r -p "Press any key to back on menu xray"
+xraay
+}
+# FUCTION CEK USER
+function menu6 () {
+clear

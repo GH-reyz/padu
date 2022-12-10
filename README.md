@@ -1,7 +1,6 @@
-# Script PADU
- Welcome PADU😊
+# Script Multi By Reyz-V4
 
- <h2 align="center">AutoScript VPN By PADU <img src="https://img.shields.io/badge/Version-6.0-blue.svg"></h2>
+ <h2 align="center">AutoScript VPN By Reyz <img src="https://img.shields.io/badge/Version-6.0-blue.svg"></h2>
 
 
 <h2 align="center"> Supported Linux Distribution</h2>
@@ -30,7 +29,7 @@ src="https://img.shields.io/badge/Service-Xray-success.svg">  <img src= "https:/
 ## INSTALLATION SCRIPT
 
   ```html
-  sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.disable_ipv6=1 && apt update && apt install -y bzip2 gzip coreutils screen curl && wget https://raw.githubusercontent.com/jiwakentantal/padu/main/install.sh && chmod +x install.sh && ./install.sh
+  sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.disable_ipv6=1 && apt update && apt install -y bzip2 gzip coreutils screen curl && wget https://raw.githubusercontent.com/GH-reyz/padu/main/install.sh && chmod +x install.sh && ./install.sh
 
   ```
  
@@ -98,7 +97,7 @@ systemctl restart wg-quick@wg0
 
 ## Credit :
 
-*   MATKILAUPAHLAWAN
+*   PakyaVPN
 
 *   Project D
 

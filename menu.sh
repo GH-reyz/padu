@@ -160,28 +160,29 @@ echo -e "         ${cyan} [ XRAY-CORE${NC} : ${status_xray} ]          ${cyan} [
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 echo -e "\\E[0;46;37m                        TUNNELING MENU                      \E[0m"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "  $green[${white}1${green}] ${green} XRAY Vmess WS Panel$NC"
-echo -e "  $green[${white}2${green}] ${green} XRAY Vless WS Panel$NC"
-echo -e "  $green[${white}3${green}] ${green} XRAY Trojan WS Panel$NC"
-echo -e "  $green[${white}4${green}] ${green} XRAY Vless TCP XTLS Panel$NC"
-echo -e "  $green[${white}5${green}] ${green} XRAY Trojan TCP Panel$NC"
-echo -e "  $green[${white}6${green}] ${green} Trojan GO Panel$NC"
+echo -e "  $green[${white}1${green}] ${green} SSH & OpenVPN Panel$NC"
+echo -e "  $green[${white}2${green}] ${green} XRAY Vmess WS Panel$NC"
+echo -e "  $green[${white}3${green}] ${green} XRAY Vless WS Panel$NC"
+echo -e "  $green[${white}4${green}] ${green} XRAY Trojan WS Panel$NC"
+echo -e "  $green[${white}5${green}] ${green} XRAY Vless TCP XTLS Panel$NC"
+echo -e "  $green[${white}6${green}] ${green} XRAY Trojan TCP Panel$NC"
+echo -e "  $green[${white}7${green}] ${green} Trojan GO Panel$NC"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 echo -e "\\E[0;46;37m                        SYSTEM MENU                         \E[0m"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "  $green[${white}7${green}] ${green}Change Domain ${cyan}(add-host)$NC"
-echo -e "  $green[${white}8${green}] ${green}Menu Themes ${cyan}(themes)$NC"
-echo -e "  $green[${white}9${green}] ${green}Renew Certificate XRAY ${cyan}(cert)$NC"
-echo -e "  $green[${white}10${green}] ${green}Check VPN Statusn ${cyan}(status)$NC"
-echo -e "  $green[${white}11${green}] ${green}INFO All Port ${cyan}(info)$NC"
-echo -e "  $green[${white}12${green}] ${green}Restart VPN Servicesn${cyan}(restart)$NC"
-echo -e "  $green[${white}13${green}] ${green}Speedtest VPS ${cyan}(speedtest)$NC"
-echo -e "  $green[${white}14${green}] ${green}Check RAM ${cyan}(ram)$NC"
-echo -e "  $green[${white}15${green}] ${green}DNS Changer ${cyan}(dns)$NC"
-echo -e "  $green[${white}16${green}] ${green}Netflix Checker ${cyan}(nf)$NC"
-echo -e "  $green[${white}17${green}] ${green}Check Bandwith Server ${cyan}(vnstat)$NC"
-echo -e "  $green[${white}18${green}] ${green}Backup ${cyan}(backup)$NC"
-echo -e "  $green[${white}19${green}] ${green}Restore ${cyan}(restore)$NC"
+echo -e "  $green[${white}8${green}] ${green}Change Domain ${cyan}(add-host)$NC"
+echo -e "  $green[${white}9${green}] ${green}Menu Themes ${cyan}(themes)$NC"
+echo -e "  $green[${white}10${green}] ${green}Renew Certificate XRAY ${cyan}(cert)$NC"
+echo -e "  $green[${white}11${green}] ${green}Check VPN Statusn ${cyan}(status)$NC"
+echo -e "  $green[${white}12${green}] ${green}INFO All Port ${cyan}(info)$NC"
+echo -e "  $green[${white}13${green}] ${green}Restart VPN Servicesn${cyan}(restart)$NC"
+echo -e "  $green[${white}14${green}] ${green}Speedtest VPS ${cyan}(speedtest)$NC"
+echo -e "  $green[${white}15${green}] ${green}Check RAM ${cyan}(ram)$NC"
+echo -e "  $green[${white}16${green}] ${green}DNS Changer ${cyan}(dns)$NC"
+echo -e "  $green[${white}17${green}] ${green}Netflix Checker ${cyan}(nf)$NC"
+echo -e "  $green[${white}18${green}] ${green}Check Bandwith Server ${cyan}(vnstat)$NC"
+echo -e "  $green[${white}19${green}] ${green}Backup ${cyan}(backup)$NC"
+echo -e "  $green[${white}20${green}] ${green}Restore ${cyan}(restore)$NC"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 echo -e "  $red[${white}0${red}] ${white}Exit from the menu ${cyan}(Ctrl+C)$NC"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
@@ -189,60 +190,63 @@ read -p "  $(echo -e     ${white}Enter Your Options  ${green}[${NC}${white}1-20 
 echo -e ""
 case $main in
 1)
-menu-ws
+add-ssh
 ;;
 2)
-menu-vless
+menu-ws
 ;;
 3)
-menu-tr
+menu-vless
 ;;
 4)
-menu-xray
+menu-tr
 ;;
 5)
-menu-xtr
+menu-xray
 ;;
 6)
-menu-trgo
+menu-xtr
 ;;
 7)
-add-host
+menu-trgo
 ;;
 8)
-themes
+add-host
 ;;
 9)
-certxray
+themes
 ;;
 10)
-status
+certxray
 ;;
 11)
-info
+status
 ;;
 12)
-restart
+info
 ;;
 13)
-speedtest
+restart
 ;;
 14)
-ram
+speedtest
 ;;
 15)
-dns
+ram
 ;;
 16)
-nf
+dns
 ;;
 17)
-vnstat
+nf
 ;;
 18)
-backup
+vnstat
 ;;
 19)
+backup
+;;
+20)
 restore
 ;;
 0)

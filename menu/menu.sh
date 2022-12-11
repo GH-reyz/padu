@@ -180,7 +180,7 @@ echo -e "  $green[${white}18${green}] ${green}Check Bandwith Server ${cyan}(vnst
 echo -e "  $green[${white}19${green}] ${green}Backup ${cyan}(backup)$NC"
 echo -e "  $green[${white}20${green}] ${green}Restore ${cyan}(restore)$NC"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "         ${cyan} [ XRAY-CORE${NC} : ${status_xray} ]          ${cyan} [ NGINX${NC} : ${status_nginx} ]"
+echo -e "      ${cyan} [ XRAY-CORE${NC} : ${status_xray} ]          ${cyan} [ NGINX${NC} : ${status_nginx} ]"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 read -p "  $(echo -e     ${white}Enter Your Options  ${green}[${NC}${white}1-20 or x${green}]${NC} :)  "  main
 echo -e ""

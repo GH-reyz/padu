@@ -1374,12 +1374,12 @@ cd /usr/bin
 # // TROJAN GO FILES
 echo -e "[ ${green}INFO${NC} ] Downloading Trojan GO WS Files"
 sleep 1
-wget -O add-trgo "https://raw.githubusercontent.com/${GitUser}/padu/main/TRGO/add-trgo.sh" && chmod +x add-trgo
-wget -O cek-trgo "https://raw.githubusercontent.com/${GitUser}/padu/main/TRGO/cek-trgo.sh" && chmod +x cek-trgo
-wget -O del-trgo "https://raw.githubusercontent.com/${GitUser}/padu/main/TRGO/del-trgo.sh" && chmod +x del-trgo
-wget -O renew-trgo "https://raw.githubusercontent.com/${GitUser}/padu/main/TRGO/renew-trgo.sh" && chmod +x renew-trgo
-wget -O user-trgo "https://raw.githubusercontent.com/${GitUser}/padu/main/TRGO/user-trgo.sh" && chmod +x user-trgo
-wget -O port-trgo "https://raw.githubusercontent.com/${GitUser}/padu/main/TRGO/port-trgo.sh" && chmod +x port-trgo
+wget -O add-trgo "https://raw.githubusercontent.com/${GitUser}/padu/main/add-user/add-trgo.sh" && chmod +x add-trgo
+wget -O cek-trgo "https://raw.githubusercontent.com/${GitUser}/padu/main/cek-user/cek-trgo.sh" && chmod +x cek-trgo
+wget -O del-trgo "https://raw.githubusercontent.com/${GitUser}/padu/main/delete-user/del-trgo.sh" && chmod +x del-trgo
+wget -O renew-trgo "https://raw.githubusercontent.com/${GitUser}/padu/main/renew-user/renew-trgo.sh" && chmod +x renew-trgo
+wget -O user-trgo "https://raw.githubusercontent.com/${GitUser}/padu/main/show-user/show-trgo.sh" && chmod +x user-trgo
+wget -O port-trgo "https://raw.githubusercontent.com/${GitUser}/padu/main/change-port/port-trgo.sh" && chmod +x port-trgo
 
 # // MENU FILES
 echo -e "[ ${green}INFO${NC} ] Downloading Menu Files"

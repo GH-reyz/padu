@@ -78,6 +78,8 @@ sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.di
 *   PakyaVPN
 *   GHReyz / ReyzV4
 
+Contact Telegram : @GHReyz / ReyzV4
+
 <p align="center">
   <a><img src="https://img.shields.io/badge/Copyright%20©-PADU%20AutoScriptVPN%202022.%20All%20rights%20reserved...-blueviolet.svg" style="max-width:200%;">
     </p>

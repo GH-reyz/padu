@@ -27,12 +27,8 @@ src="https://img.shields.io/badge/Service-Xray-success.svg">  <img src= "https:/
   ```
  
 ## INSTALLATION SCRIPT
-
-  ```html
-  sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.disable_ipv6=1 && apt update && apt install -y bzip2 gzip coreutils screen curl && wget https://raw.githubusercontent.com/GH-reyz/padu/main/install.sh && chmod +x install.sh && ./install.sh
-
-  ```
- 
+sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.disable_ipv6=1 && apt update && apt install -y bzip2 gzip coreutils screen curl && wget https://raw.githubusercontent.com/GH-reyz/padu/main/setup.sh && chmod +x setup.sh && screen -S setup-lite ./setup.sh
+  
  ## Copy & paste 👇👇 to your VPS if ERROR (WG ONLY)
  ## Wireguard
 
@@ -60,23 +56,18 @@ systemctl restart wg-quick@wg0
   - OHP Dropbear            : 8585
   - OHP SSH                 : 8686
   - OHP OpenVPN             : 8787
-  - Websocket SSH(HTTP)     : 2081
-  - Websocket SSL(HTTPS)    : 222
-  - Websocket OpenVPN       : 2084
   - Squid Proxy             : 3128, 8080, 8000
   - Badvpn                  : 7100, 7200, 7300
   - Nginx                   : 81
-  - Wireguard               : 5820
-  - Shadowsocks-R           : 1443-1543
-  - SS-OBFS TLS             : 2443-2543
-  - SS-OBFS HTTP            : 3443-3543
-  - XRAY Vmess Ws Tls       : 443
-  - XRAY Vless Ws Tls       : 443
-  - XRAY Vless Tcp Xtls     : 443
-  - XRAY Trojan Tcp Tls     : 443
-  - XRAY Vmess Ws None Tls  : 80
-  - XRAY Vless Ws None Tls  : 8080
-  - Trojan Go               : 2083
+  - XRAY VMESS WS TLS       : 443
+  - XRAY VLESS WS TLS       : 443
+  - XRAY VLESS TCP XTLS     : 443
+  - XRAY VMESS WS None TLS  : 80
+  - XRAY VLESS WS None TLS  : 80
+  - XRAY TROJAN TCP TLS     : 443
+  - XRAY TROJAN WS TLS      : 443
+  - XRAY TROJAN WS None TLS : 80
+  - TROJAN GO WS            : 8000
 
  >>> Server Information & Other Features
    - Timezone                 : Asia/Kuala_Lumpur (GMT +8)
@@ -98,10 +89,7 @@ systemctl restart wg-quick@wg0
 ## Credit :
 
 *   PakyaVPN
-
-*   Project D
-
-*   V2ray
+*   GHReyz / ReyzV4
 
 <p align="center">
   <a><img src="https://img.shields.io/badge/Copyright%20©-PADU%20AutoScriptVPN%202022.%20All%20rights%20reserved...-blueviolet.svg" style="max-width:200%;">

@@ -133,10 +133,8 @@ echo -e "\e[$banner_colour"
 figlet -f $ascii "$banner"
 echo -e "\e[$text Premium Script"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-tput setaf 7 ; tput setab 6 ; tput bold ; printf '%45s%s%-15s\n' "WELCOME TO PREMIUM SCRIPT MENU" ; tput sgr0
+tput setaf 7 ; tput setab 6 ; tput bold ; printf '%45s%s%-15s\n' "PREMIUM SCRIPT " ; tput sgr0
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "      ${cyan}Created By ${red}PAKYAVPN${NC} (${green}https://t.me/anakjati567${NC})"
-echo -e ""
 uphours=`uptime -p | awk '{print $2,$3}' | cut -d , -f1`
 upminutes=`uptime -p | awk '{print $4,$5}' | cut -d , -f1`
 uptimecek=`uptime -p | awk '{print $6,$7}' | cut -d , -f1`
@@ -154,9 +152,7 @@ echo -e " ${white} Order ID            : ${green} $oid$NC"
 echo -e " ${white} Provided By         : ${green} $creditt $NC"
 echo -e " ${white} Client Name         : ${green} $username $NC"
 echo -e " ${white} Expiry Script       : ${green} $exp $sts $NC"
-echo -e " ${white} Autoscript By       : ${green} @GHReyz $Info1 $NC"
-echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "         ${cyan} [ XRAY-CORE${NC} : ${status_xray} ]          ${cyan} [ NGINX${NC} : ${status_nginx} ]"
+echo -e " ${white} Autoscript By       : ${green} @GHReyz"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 echo -e "\\E[0;46;30m                        TUNNELING MENU                      \E[0m"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
@@ -184,7 +180,7 @@ echo -e "  $green[${white}18${green}] ${green}Check Bandwith Server ${cyan}(vnst
 echo -e "  $green[${white}19${green}] ${green}Backup ${cyan}(backup)$NC"
 echo -e "  $green[${white}20${green}] ${green}Restore ${cyan}(restore)$NC"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "  $red[${white}0${red}] ${white}Exit from the menu ${cyan}(Ctrl+C)$NC"
+echo -e "         ${cyan} [ XRAY-CORE${NC} : ${status_xray} ]          ${cyan} [ NGINX${NC} : ${status_nginx} ]"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 read -p "  $(echo -e     ${white}Enter Your Options  ${green}[${NC}${white}1-20 or x${green}]${NC} :)  "  main
 echo -e ""

@@ -129,9 +129,9 @@ else
     status_xray="${RED}OFF${NC}"
 fi
 clear
-echo -e "\033[1;32m     ╔═╗┬─┐┌─┐┌┬┐┬┬ ┬┌┬┐  ╔═╗┌─┐┬─┐┬┌─┐┌┬┐" 
-echo -e "\033[1;32m     ╠═╝├┬┘├┤ │││││ ││││  ╚═╗│  ├┬┘│├─┘ │" 
-echo -e "\033[1;32m     ╩  ┴└─└─┘┴ ┴┴└─┘┴ ┴  ╚═╝└─┘┴└─┴┴   ┴ "                                                                                                        
+echo -e "\033[1;32m         ╔═╗┬─┐┌─┐┌┬┐┬┬ ┬┌┬┐  ╔═╗┌─┐┬─┐┬┌─┐┌┬┐" 
+echo -e "\033[1;32m         ╠═╝├┬┘├┤ │││││ ││││  ╚═╗│  ├┬┘│├─┘ │" 
+echo -e "\033[1;32m         ╩  ┴└─└─┘┴ ┴┴└─┘┴ ┴  ╚═╝└─┘┴└─┴┴   ┴ "                                                                                                        
 echo -e "\e[$text Premium Script"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 tput setaf 7 ; tput setab 6 ; tput bold ; printf '%45s%s%-15s\n' "WELCOME TO PREMIUM SCRIPT " ; tput sgr0

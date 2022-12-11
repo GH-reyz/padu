@@ -133,7 +133,7 @@ echo -e "\e[$banner_colour"
 figlet -f $ascii "$banner"
 echo -e "\e[$text Premium Script"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-tput setaf 7 ; tput setab 6 ; tput bold ; printf '%45s%s%-15s\n' "PREMIUM SCRIPT " ; tput sgr0
+tput setaf 7 ; tput setab 6 ; tput bold ; printf '%45s%s%-15s\n' "WELCOME TO PREMIUM SCRIPT " ; tput sgr0
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 uphours=`uptime -p | awk '{print $2,$3}' | cut -d , -f1`
 upminutes=`uptime -p | awk '{print $4,$5}' | cut -d , -f1`

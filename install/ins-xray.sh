@@ -1192,47 +1192,47 @@ cd /usr/bin
 # // VMESS WS FILES
 echo -e "[ ${green}INFO${NC} ] Downloading Vmess WS Files"
 sleep 1
-wget -O add-ws "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/add-ws.sh" && chmod +x add-ws
-wget -O cek-ws "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/cek-ws.sh" && chmod +x cek-ws
-wget -O del-ws "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/del-ws.sh" && chmod +x del-ws
-wget -O renew-ws "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/renew-ws.sh" && chmod +x renew-ws
-wget -O user-ws "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/user-ws.sh" && chmod +x user-ws
+wget -O add-ws "https://raw.githubusercontent.com/${GitUser}/padu/main/add-user/add-ws.sh" && chmod +x add-ws
+wget -O cek-ws "https://raw.githubusercontent.com/${GitUser}/padu/main/cek-user/cek-ws.sh" && chmod +x cek-ws
+wget -O del-ws "https://raw.githubusercontent.com/${GitUser}/padu/main/delete-user/del-ws.sh" && chmod +x del-ws
+wget -O renew-ws "https://raw.githubusercontent.com/${GitUser}/padu/main/renew-user/renew-ws.sh" && chmod +x renew-ws
+wget -O user-ws "https://raw.githubusercontent.com/${GitUser}/padu/main/show-user/show-ws.sh" && chmod +x user-ws
 
 # // VLESS WS FILES
 echo -e "[ ${green}INFO${NC} ] Downloading Vless WS Files"
 sleep 1
-wget -O add-vless "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/add-vless.sh" && chmod +x add-vless
-wget -O cek-vless "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/cek-vless.sh" && chmod +x cek-vless
-wget -O del-vless "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/del-vless.sh" && chmod +x del-vless
-wget -O renew-vless "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/renew-vless.sh" && chmod +x renew-vless
-wget -O user-vless "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/user-vless.sh" && chmod +x user-vless
+wget -O add-vless "https://raw.githubusercontent.com/${GitUser}/padu/main/add-user/add-vless.sh" && chmod +x add-vless
+wget -O cek-vless "https://raw.githubusercontent.com/${GitUser}/padu/main/cek-user/cek-vless.sh" && chmod +x cek-vless
+wget -O del-vless "https://raw.githubusercontent.com/${GitUser}/padu/main/delete-user/del-vless.sh" && chmod +x del-vless
+wget -O renew-vless "https://raw.githubusercontent.com/${GitUser}/padu/main/renew-user/renew-vless.sh" && chmod +x renew-vless
+wget -O user-vless "https://raw.githubusercontent.com/${GitUser}/padu/main/show-user/show-vless.sh" && chmod +x user-vless
 
 # // TROJAN WS FILES
 echo -e "[ ${green}INFO${NC} ] Downloading Trojan WS Files"
 sleep 1
-wget -O add-tr "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/add-tr.sh" && chmod +x add-tr
-wget -O cek-tr "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/cek-tr.sh" && chmod +x cek-tr
-wget -O del-tr "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/del-tr.sh" && chmod +x del-tr
-wget -O renew-tr "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/renew-tr.sh" && chmod +x renew-tr
-wget -O user-tr "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/user-tr.sh" && chmod +x user-tr
+wget -O add-tr "https://raw.githubusercontent.com/${GitUser}/padu/main/add-user/add-tr.sh" && chmod +x add-tr
+wget -O cek-tr "https://raw.githubusercontent.com/${GitUser}/padu/main/cek-user/cek-tr.sh" && chmod +x cek-tr
+wget -O del-tr "https://raw.githubusercontent.com/${GitUser}/padu/main/delete-user/del-tr.sh" && chmod +x del-tr
+wget -O renew-tr "https://raw.githubusercontent.com/${GitUser}/padu/main/renew-user/renew-tr.sh" && chmod +x renew-tr
+wget -O user-tr "https://raw.githubusercontent.com/${GitUser}/padu/main/show-user/show-tr.sh" && chmod +x user-tr
 
 # // VLESS TCP XTLS
 echo -e "[ ${green}INFO${NC} ] Downloading XRAY Vless TCP XTLS Files"
 sleep 1
-wget -O add-xray "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/add-xray.sh" && chmod +x add-xray
-wget -O cek-xray "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/cek-xray.sh" && chmod +x cek-xray
-wget -O del-xray "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/del-xray.sh" && chmod +x del-xray
-wget -O renew-xray "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/renew-xray.sh" && chmod +x renew-xray
-wget -O user-xray "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/user-xray.sh" && chmod +x user-xray
+wget -O add-xray "https://raw.githubusercontent.com/${GitUser}/padu/main/add-user/add-xray.sh" && chmod +x add-xray
+wget -O cek-xray "https://raw.githubusercontent.com/${GitUser}/padu/main/cek-user/cek-xray.sh" && chmod +x cek-xray
+wget -O del-xray "https://raw.githubusercontent.com/${GitUser}/padu/main/delete-user/del-xray.sh" && chmod +x del-xray
+wget -O renew-xray "https://raw.githubusercontent.com/${GitUser}/padu/main/renew-user/renew-xray.sh" && chmod +x renew-xray
+wget -O user-xray "https://raw.githubusercontent.com/${GitUser}/padu/main/show-user/show-xray.sh" && chmod +x user-xray
 
 # // TROJAN TCP FILES
 echo -e "[ ${green}INFO${NC} ] Downloading Trojan TCP Files"
 sleep 1
-wget -O add-xtr "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/add-xtr.sh" && chmod +x add-xtr
-wget -O cek-xtr "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/cek-xtr.sh" && chmod +x cek-xtr
-wget -O del-xtr "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/del-xtr.sh" && chmod +x del-xtr
-wget -O renew-xtr "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/renew-xtr.sh" && chmod +x renew-xtr
-wget -O user-xtr "https://raw.githubusercontent.com/${GitUser}/padu/main/XRAY/user-xtr.sh" && chmod +x user-xtr
+wget -O add-xtr "https://raw.githubusercontent.com/${GitUser}/padu/main/add-user/add-xtr.sh" && chmod +x add-xtr
+wget -O cek-xtr "https://raw.githubusercontent.com/${GitUser}/padu/main/cek-user/cek-xtr.sh" && chmod +x cek-xtr
+wget -O del-xtr "https://raw.githubusercontent.com/${GitUser}/padu/main/delete-user/del-xtr.sh" && chmod +x del-xtr
+wget -O renew-xtr "https://raw.githubusercontent.com/${GitUser}/padu/main/renew-user/renew-xtr.sh" && chmod +x renew-xtr
+wget -O user-xtr "https://raw.githubusercontent.com/${GitUser}/padu/main/show-user/show-xtr.sh" && chmod +x user-xtr
 
 # // OTHER FILES
 echo -e "[ ${green}INFO${NC} ] Downloading Others Files"

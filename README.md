@@ -27,25 +27,10 @@ src="https://img.shields.io/badge/Service-Xray-success.svg">  <img src= "https:/
   ```
  
 ## INSTALLATION SCRIPT
+```html
 sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sysctl -w net.ipv6.conf.default.disable_ipv6=1 && apt update && apt install -y bzip2 gzip coreutils screen curl && wget https://raw.githubusercontent.com/GH-reyz/padu/main/setup.sh && chmod +x setup.sh && screen -S setup-lite ./setup.sh
   
- ## Copy & paste 👇👇 to your VPS if ERROR (WG ONLY)
- ## Wireguard
-
-  ```html
-  echo "deb http://deb.debian.org/debian/ unstable main" >/etc/apt/sources.list.d/unstable.list
-printf 'Package: *\nPin: release a=unstable\nPin-Priority: 90\n' >/etc/apt/preferences.d/limit-unstable
-apt update
-apt install -y wireguard-tools iptables iptables-persistent
-apt install -y linux-headers-$(uname -r)
- 
-  ```
- 
-   ```html
-systemctl restart wg-quick@wg0
-
-  ```
-
+```
 
   Service & Port
 

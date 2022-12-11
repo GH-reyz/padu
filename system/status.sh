@@ -57,33 +57,6 @@ else
 echo -e " DropBear                       : "$red"not running (Error)"$NC" "
 fi
 
-status="$(systemctl show ws-http.service --no-page)"
-status_text=$(echo "${status}" | grep 'ActiveState=' | cut -f2 -d=)
-if [ "${status_text}" == "active" ]
-then
-echo -e " Websocket SSH(HTTP)            : "$green"running"$NC" "
-else
-echo -e " Websocket SSH(HTTP)            : "$red"not running (Error)"$NC" "
-fi
-
-status="$(systemctl show ws-https.service --no-page)"
-status_text=$(echo "${status}" | grep 'ActiveState=' | cut -f2 -d=)
-if [ "${status_text}" == "active" ]
-then
-echo -e " Websocket SSL(HTTPS)           : "$green"running"$NC" "
-else
-echo -e " Websocket SSL(HTTPS)           : "$red"not running (Error)"$NC" "
-fi
-
-status="$(systemctl show ws-ovpn.service --no-page)"
-status_text=$(echo "${status}" | grep 'ActiveState=' | cut -f2 -d=)
-if [ "${status_text}" == "active" ]
-then
-echo -e " Websocket OpenVPN(HTTP)        : "$green"running"$NC" "
-else
-echo -e " Websocket OpenVPN(HTTP)        : "$red"not running (Error)"$NC" "
-fi
-
 status="$(systemctl show cron.service --no-page)"
 status_text=$(echo "${status}" | grep 'ActiveState=' | cut -f2 -d=)
 if [ "${status_text}" == "active" ]
@@ -204,7 +177,7 @@ fi
 echo -e "\e[0;34m-----------------------------------------------------------\e[0m"
 echo -e ""
 echo -e "${green}JIKA TERDAPAT NOT RUNNING, PLEASE REPORT TO ADMIN FOR FIX$NC"
-echo -e "${green}Report to PAKYAVPN @anakjati567$NC"
+echo -e "${green}Report to ReyzVPN @GHReyz$NC"
 echo ""
 read -n 1 -s -r -p "Press any key to back on menu"
 menu

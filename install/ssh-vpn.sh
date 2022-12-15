@@ -1,5 +1,5 @@
 #!/bin/bash
-# By pakyavpn
+# By reyz
 # ==================================================
 #wget https://github.com/${GitUser}/
 GitUser="GH-reyz"

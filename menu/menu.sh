@@ -133,10 +133,8 @@ echo -e "\e[$banner_colour"
 figlet -f $ascii "$banner"
 echo -e "\e[$text Premium Script"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-tput setaf 7 ; tput setab 6 ; tput bold ; printf '%45s%s%-15s\n' "WELCOME TO PREMIUM SCRIPT MENU" ; tput sgr0
+tput setaf 7 ; tput setab 6 ; tput bold ; printf '%45s%s%-15s\n' "WELCOME TO PREMIUM SCRIPT " ; tput sgr0
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "      ${cyan}Created By ${red}PAKYAVPN${NC} (${green}https://t.me/anakjati567${NC})"
-echo -e ""
 uphours=`uptime -p | awk '{print $2,$3}' | cut -d , -f1`
 upminutes=`uptime -p | awk '{print $4,$5}' | cut -d , -f1`
 uptimecek=`uptime -p | awk '{print $6,$7}' | cut -d , -f1`
@@ -154,11 +152,9 @@ echo -e " ${white} Order ID            : ${green} $oid$NC"
 echo -e " ${white} Provided By         : ${green} $creditt $NC"
 echo -e " ${white} Client Name         : ${green} $username $NC"
 echo -e " ${white} Expiry Script       : ${green} $exp $sts $NC"
-echo -e " ${white} Autoscript By       : ${green} PAKYAVPN $Info1 $NC"
+echo -e " ${white} Autoscript By       : ${green} @GHReyz"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "         ${cyan} [ XRAY-CORE${NC} : ${status_xray} ]          ${cyan} [ NGINX${NC} : ${status_nginx} ]"
-echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "\\E[0;46;37m                        TUNNELING MENU                      \E[0m"
+echo -e "\\E[0;46;30m                        TUNNELING MENU                      \E[0m"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 echo -e "  $green[${white}1${green}] ${green} SSH & OpenVPN Panel$NC"
 echo -e "  $green[${white}2${green}] ${green} XRAY Vmess WS Panel$NC"
@@ -168,7 +164,7 @@ echo -e "  $green[${white}5${green}] ${green} XRAY Vless TCP XTLS Panel$NC"
 echo -e "  $green[${white}6${green}] ${green} XRAY Trojan TCP Panel$NC"
 echo -e "  $green[${white}7${green}] ${green} Trojan GO Panel$NC"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "\\E[0;46;37m                        SYSTEM MENU                         \E[0m"
+echo -e "\\E[0;46;30m                        SYSTEM MENU                         \E[0m"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 echo -e "  $green[${white}8${green}] ${green}Change Domain ${cyan}(add-host)$NC"
 echo -e "  $green[${white}9${green}] ${green}Menu Themes ${cyan}(themes)$NC"
@@ -185,13 +181,13 @@ echo -e "  $green[${white}19${green}] ${green}Backup ${cyan}(backup)$NC"
 echo -e "  $green[${white}20${green}] ${green}Restore ${cyan}(restore)$NC"
 echo -e "  $green[${white}21${green}] ${green}Limit Speed ${cyan}(limit)$NC"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "  $red[${white}0${red}] ${white}Exit from the menu ${cyan}(Ctrl+C)$NC"
+echo -e "      ${cyan} [ XRAY-CORE${NC} : ${status_xray} ]          ${cyan} [ NGINX${NC} : ${status_nginx} ]"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 read -p "  $(echo -e     ${white}Enter Your Options  ${green}[${NC}${white}1-20 or x${green}]${NC} :)  "  main
 echo -e ""
 case $main in
 1)
-add-ssh
+menu-ssh
 ;;
 2)
 menu-ws

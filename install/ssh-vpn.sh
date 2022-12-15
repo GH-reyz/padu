@@ -276,7 +276,7 @@ wget -O menu-ssh "https://raw.githubusercontent.com/${GitUser}/padu/main/menu/me
 wget -O add-ssh "https://raw.githubusercontent.com/${GitUser}/padu/main/add-user/add-ssh.sh"
 wget -O trial "https://raw.githubusercontent.com/${GitUser}/padu/main/add-user/trial.sh"
 wget -O del-ssh "https://raw.githubusercontent.com/${GitUser}/padu/main/delete-user/del-ssh.sh"
-wget -O renew-ssh "https://raw.githubusercontent.com/GH-reyz/padu/main/renew-user/renew-ssh.sh"
+wget -O renew-ssh "https://raw.githubusercontent.com/${GitUser}/padu/main/renew-user/renew-ssh.sh"
 wget -O cek-ssh "https://raw.githubusercontent.com/${GitUser}/padu/main/cek-user/cek-ssh.sh"
 wget -O member "https://raw.githubusercontent.com/${GitUser}/padu/main/member.sh"
 wget -O delete "https://raw.githubusercontent.com/${GitUser}/padu/main/delete-user/delete.sh"

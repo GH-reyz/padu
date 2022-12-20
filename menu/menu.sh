@@ -128,7 +128,7 @@ ascii=$(cat /usr/bin/test)
 # // nginx status
 nginx=$( systemctl status nginx | grep Active | awk '{print $3}' | sed 's/(//g' | sed 's/)//g' )
 if [[ $nginx == "running" ]]; then
-    status_nginx="${GREEN}ON${NC}"
+    status_nginx="${GREEN}✓${NC}"
 else
     status_nginx="${RED}OFF${NC}"
 fi
@@ -136,16 +136,16 @@ fi
 # // xray status
 xray=$( systemctl status xray | grep Active | awk '{print $3}' | sed 's/(//g' | sed 's/)//g' )
 if [[ $xray == "running" ]]; then
-    status_xray="${GREEN}ON${NC}"
+    status_xray="${GREEN}✓${NC}"
 else
     status_xray="${RED}OFF${NC}"
 fi
 clear
 echo -e "\e[$banner_colour"
 figlet -f $ascii "$banner"
-echo -e "\033[1;32m     ╔═╗┬─┐┌─┐┌┬┐┬┬ ┬┌┬┐  ╔═╗┌─┐┬─┐┬┌─┐┌┬┐" 
-echo -e "\033[1;32m     ╠═╝├┬┘├┤ │││││ ││││  ╚═╗│  ├┬┘│├─┘ │" 
-echo -e "\033[1;32m     ╩  ┴└─└─┘┴ ┴┴└─┘┴ ┴  ╚═╝└─┘┴└─┴┴   ┴ "                                                                                                          
+echo -e "\033[1;32m         ╔═╗┬─┐┌─┐┌┬┐┬┬ ┬┌┬┐  ╔═╗┌─┐┬─┐┬┌─┐┌┬┐" 
+echo -e "\033[1;32m         ╠═╝├┬┘├┤ │││││ ││││  ╚═╗│  ├┬┘│├─┘ │" 
+echo -e "\033[1;32m         ╩  ┴└─└─┘┴ ┴┴└─┘┴ ┴  ╚═╝└─┘┴└─┴┴   ┴ "                                                                                                          
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 tput setaf 7 ; tput setab 6 ; tput bold ; printf '%45s%s%-15s\n' "WELCOME TO PREMIUM SCRIPT " ; tput sgr0
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
@@ -171,9 +171,9 @@ echo -e "${blue}═════════════════════�
 echo -e   "  \e[33m Traffic\e[0m       \e[33mToday      Yesterday     Month   "
 echo -e   "  \e[33m Download\e[0m      $dtoday    $dyest       $dmon   \e[0m"
 echo -e   "  \e[33m Upload\e[0m        $utoday    $uyest       $umon   \e[0m"
-echo -e   "  \e[33m Total\e[0m       \033[0;36m  $ttoday    $tyest       $tmon  \e[0m "
+echo -e   "  \e[33m Total\e[0m       \033[1;36m  $ttoday    $tyest       $tmon  \e[0m "
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "\\E[0;46;30m                       ★ TUNNELING MENU ★                  \E[0m"
+echo -e "\\E[0;46;30m                     ★ TUNNELING MENU ★                     \E[0m"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 echo -e "  $green[${white}1${green}] ${green} SSH & OpenVPN Panel$NC"
 echo -e "  $green[${white}2${green}] ${green} XRAY Vmess WS Panel$NC"
@@ -183,7 +183,7 @@ echo -e "  $green[${white}5${green}] ${green} XRAY Vless TCP XTLS Panel$NC"
 echo -e "  $green[${white}6${green}] ${green} XRAY Trojan TCP Panel$NC"
 echo -e "  $green[${white}7${green}] ${green} Trojan GO Panel$NC"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "\\E[0;46;30m                       ★ SYSTEM MENU ★                     \E[0m"
+echo -e "\\E[0;46;30m                     ★ SYSTEM MENU ★                        \E[0m"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 echo -e "  $green[${white}8${green}] ${green}Change Domain ${cyan}(add-host)$NC"
 echo -e "  $green[${white}9${green}] ${green}Menu Themes ${cyan}(themes)$NC"

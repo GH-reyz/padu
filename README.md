@@ -1,6 +1,6 @@
 # Script Multi By Reyz-V4
 
- <h2 align="center">AutoScript VPN By Reyz <img src="https://img.shields.io/badge/Version-6.0-blue.svg"></h2>
+ <h2 align="center">AutoScript VPN By Reyz <img src="https://i.postimg.cc/T18nFPVj/IMG-20221221-021252.jpg"></h2>
 
 
 <p align="center"><img src="https://i.postimg.cc/TwCbYMtc/IMG-20221211-235700.jpg"

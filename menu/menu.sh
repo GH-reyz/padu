@@ -89,6 +89,8 @@ cpu_usage+=" %"
 tram=$(free -m | awk 'NR==2 {print $2}')
 uram=$(free -m | awk 'NR==2 {print $3}')
 fram=$(free -m | awk 'NR==2 {print $4}')
+DATE=$(date +"%d-%B-%Y")
+WKT=$(date +"%T")
 clear
 today=$(date -d "0 days" +"%Y-%m-%d")
 Exp1=$(curl https://raw.githubusercontent.com/GH-reyz/allow1/main/ipvps.conf | grep $MYIP | awk '{print $4}')
@@ -136,7 +138,7 @@ nginx=$( systemctl status nginx | grep Active | awk '{print $3}' | sed 's/(//g' 
 if [[ $nginx == "running" ]]; then
     status_nginx="${GREEN}✓${NC}"
 else
-    status_nginx="${RED}OFF${NC}"
+    status_nginx="${RED}❌${NC}"
 fi
 
 # // xray status
@@ -144,7 +146,7 @@ xray=$( systemctl status xray | grep Active | awk '{print $3}' | sed 's/(//g' | 
 if [[ $xray == "running" ]]; then
     status_xray="${GREEN}✓${NC}"
 else
-    status_xray="${RED}OFF${NC}"
+    status_xray="${RED}❌${NC}"
 fi
 clear
 echo -e "\e[$banner_colour"
@@ -173,6 +175,8 @@ echo -e " ${white} Total Of Ram        : ${green} $tram MB"
 echo -e " ${white} Used Ram            : ${green} $uram MB"
 echo -e " ${white} Free Ram            : ${green} $fram MB"
 echo -e " ${white} Order ID            : ${green} $oid$NC"
+echo -e " ${white} Time Location       : ${green} $WKT"
+echo -e " ${white} Date Location       : ${green} $DATE"
 echo -e " ${white} Provided By         : ${green} $creditt $NC"
 echo -e " ${white} Client Name         : ${green} $username $NC"
 echo -e " ${white} Expiry Script       : ${red} $exp $sts $NC"
@@ -183,7 +187,7 @@ echo -e   "  \e[33m Download\e[0m      $dtoday    $dyest       $dmon   \e[0m"
 echo -e   "  \e[33m Upload\e[0m        $utoday    $uyest       $umon   \e[0m"
 echo -e   "  \e[33m Total\e[0m       \033[1;36m  $ttoday    $tyest       $tmon  \e[0m "
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "\\E[0;46;30m                   ★ TUNNELING MENU ★                       \E[0m"
+echo -e "\\E[0;46;30m                   『 TUNNELING MENU 』                       \E[0m"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 echo -e "  $green[${white}1${green}] ${green} SSH & OpenVPN Panel$NC"
 echo -e "  $green[${white}2${green}] ${green} XRAY Vmess WS Panel$NC"
@@ -193,7 +197,7 @@ echo -e "  $green[${white}5${green}] ${green} XRAY Vless TCP XTLS Panel$NC"
 echo -e "  $green[${white}6${green}] ${green} XRAY Trojan TCP Panel$NC"
 echo -e "  $green[${white}7${green}] ${green} Trojan GO Panel$NC"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "\\E[0;46;30m                     ★ SYSTEM MENU ★                        \E[0m"
+echo -e "\\E[0;46;30m                     『 SYSTEM MENU 』                        \E[0m"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 echo -e "  $green[${white}8${green}] ${green}Change Domain ${cyan}(add-host)$NC"
 echo -e "  $green[${white}9${green}] ${green}Menu Themes ${cyan}(themes)$NC"
@@ -210,7 +214,7 @@ echo -e "  $green[${white}19${green}] ${green}Backup ${cyan}(backup)$NC"
 echo -e "  $green[${white}20${green}] ${green}Restore ${cyan}(restore)$NC"
 echo -e "  $green[${white}21${green}] ${green}Limit Speed ${cyan}(limit)$NC"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "      ${cyan} [ XRAY-CORE${NC} : ${status_xray} ]          ${cyan} [ NGINX${NC} : ${status_nginx} ]"
+echo -e "      ${cyan} [ Xray-Core${NC} : ${status_xray} ]          ${cyan} [ Nginx${NC} : ${status_nginx} ]"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 read -p "  $(echo -e     ${white}Enter Your Options  ${green}[${NC}${white}1-20 or x${green}]${NC} :)  "  main
 echo -e ""

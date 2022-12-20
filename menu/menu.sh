@@ -244,7 +244,7 @@ menu-trgo
 add-host
 ;;
 9)
-themes
+reboot
 ;;
 10)
 certxray

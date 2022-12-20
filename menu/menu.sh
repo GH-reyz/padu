@@ -4,12 +4,12 @@ clear
 GitUser="GH-reyz"
 MYIP=$(curl -sS ipv4.icanhazip.com)
 #Colour
-white='\e[0;37m'
-green='\e[0;32m'
-red='\e[0;31m'
-blue='\e[0;34m'
-cyan='\e[0;36m'
-yellow='\e[0;33m'
+white='\e[1;37m'
+green='\e[1;32m'
+red='\e[1;31m'
+blue='\e[1;34m'
+cyan='\e[1;36m'
+yellow='\e[1;33m'
 NC='\e[0m'
 clear
 echo ""
@@ -143,7 +143,9 @@ fi
 clear
 echo -e "\e[$banner_colour"
 figlet -f $ascii "$banner"
-echo -e "\e[$text Premium Script"
+echo -e "\033[1;32m     ╔═╗┬─┐┌─┐┌┬┐┬┬ ┬┌┬┐  ╔═╗┌─┐┬─┐┬┌─┐┌┬┐" 
+echo -e "\033[1;32m     ╠═╝├┬┘├┤ │││││ ││││  ╚═╗│  ├┬┘│├─┘ │" 
+echo -e "\033[1;32m     ╩  ┴└─└─┘┴ ┴┴└─┘┴ ┴  ╚═╝└─┘┴└─┴┴   ┴ "                                                                                                          
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 tput setaf 7 ; tput setab 6 ; tput bold ; printf '%45s%s%-15s\n' "WELCOME TO PREMIUM SCRIPT " ; tput sgr0
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
@@ -166,7 +168,7 @@ echo -e " ${white} Client Name         : ${green} $username $NC"
 echo -e " ${white} Expiry Script       : ${green} $exp $sts $NC"
 echo -e " ${white} Autoscript By       : ${green} @GHReyz"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e   "  \e[33m Traffic\e[0m       \e[33mToday     Yesterday     Month   "
+echo -e   "  \e[33m Traffic\e[0m       \e[33mToday      Yesterday     Month   "
 echo -e   "  \e[33m Download\e[0m      $dtoday    $dyest       $dmon   \e[0m"
 echo -e   "  \e[33m Upload\e[0m        $utoday    $uyest       $umon   \e[0m"
 echo -e   "  \e[33m Total\e[0m       \033[0;36m  $ttoday    $tyest       $tmon  \e[0m "

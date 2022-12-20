@@ -83,6 +83,9 @@ echo "$valid" >/usr/bin/e
 username=$(cat /usr/bin/user)
 oid=$(cat /usr/bin/ver)
 exp=$(cat /usr/bin/e)
+cpu_usage1="$(ps aux | awk 'BEGIN {sum=0} {sum+=$3}; END {print sum}')"
+cpu_usage="$((${cpu_usage1/\.*/} / ${corediilik:-1}))"
+cpu_usage+=" %"
 clear
 today=$(date -d "0 days" +"%Y-%m-%d")
 Exp1=$(curl https://raw.githubusercontent.com/GH-reyz/allow1/main/ipvps.conf | grep $MYIP | awk '{print $4}')
@@ -162,7 +165,9 @@ fi
 echo -e " ${white} VPN Core            : ${green} XRAY-Core$NC"
 echo -e " ${white} Domain              : ${green} $domain$NC"
 echo -e " ${white} IP VPS              : ${green} $IPVPS$NC"
+echo -e " ${white} CPU Usage           : $cpu_usage1 %"
 echo -e " ${white} Order ID            : ${green} $oid$NC"
+echo -e " ${white} OS Version          : $(hostnamectl | grep "Operating System" | cut -d ' ' -f5-)"${NC}
 echo -e " ${white} Provided By         : ${green} $creditt $NC"
 echo -e " ${white} Client Name         : ${green} $username $NC"
 echo -e " ${white} Expiry Script       : ${green} $exp $sts $NC"

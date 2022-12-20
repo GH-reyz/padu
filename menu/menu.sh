@@ -86,6 +86,9 @@ exp=$(cat /usr/bin/e)
 cpu_usage1="$(ps aux | awk 'BEGIN {sum=0} {sum+=$3}; END {print sum}')"
 cpu_usage="$((${cpu_usage1/\.*/} / ${corediilik:-1}))"
 cpu_usage+=" %"
+tram=$(free -m | awk 'NR==2 {print $2}')
+uram=$(free -m | awk 'NR==2 {print $3}')
+fram=$(free -m | awk 'NR==2 {print $4}')
 clear
 today=$(date -d "0 days" +"%Y-%m-%d")
 Exp1=$(curl https://raw.githubusercontent.com/GH-reyz/allow1/main/ipvps.conf | grep $MYIP | awk '{print $4}')
@@ -166,6 +169,9 @@ echo -e " ${white} VPN Core            : ${green} XRAY-Core$NC"
 echo -e " ${white} Domain              : ${green} $domain$NC"
 echo -e " ${white} IP VPS              : ${green} $IPVPS$NC"
 echo -e " ${white} CPU Usage           : ${green} $cpu_usage1 %"
+echo -e " ${white} Total Of Ram        : ${green} $tram MB"
+echo -e " ${white} Used Ram            : ${green} $uram MB"
+echo -e " ${white} Free Ram            : ${green} $fram MB"
 echo -e " ${white} Order ID            : ${green} $oid$NC"
 echo -e " ${white} Provided By         : ${green} $creditt $NC"
 echo -e " ${white} Client Name         : ${green} $username $NC"
@@ -177,7 +183,7 @@ echo -e   "  \e[33m Download\e[0m      $dtoday    $dyest       $dmon   \e[0m"
 echo -e   "  \e[33m Upload\e[0m        $utoday    $uyest       $umon   \e[0m"
 echo -e   "  \e[33m Total\e[0m       \033[1;36m  $ttoday    $tyest       $tmon  \e[0m "
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "\\E[0;46;30m                   ★ TUNNELING MENU ★                     \E[0m"
+echo -e "\\E[0;46;30m                   ★ TUNNELING MENU ★                       \E[0m"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 echo -e "  $green[${white}1${green}] ${green} SSH & OpenVPN Panel$NC"
 echo -e "  $green[${white}2${green}] ${green} XRAY Vmess WS Panel$NC"

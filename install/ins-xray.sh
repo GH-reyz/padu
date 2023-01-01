@@ -980,7 +980,7 @@ rm -rf /etc/systemd/system/xray@.service.d
 cat> /etc/systemd/system/xray.service << END
 [Unit]
 Description=XRAY-Websocket Service
-Documentation=https://${GitUser}-Project.net https://github.com/XTLS/Xray-core
+Documentation=https://rizood-Project.net https://github.com/XTLS/Xray-core
 After=network.target nss-lookup.target
 
 [Service]
@@ -1003,7 +1003,7 @@ END
 cat> /etc/systemd/system/xray@.service << END
 [Unit]
 Description=XRAY-Websocket Service
-Documentation=https://${GitUser}-Project.net https://github.com/XTLS/Xray-core
+Documentation=https://rizood-Project.net https://github.com/XTLS/Xray-core
 After=network.target nss-lookup.target
 
 [Service]
@@ -1072,7 +1072,7 @@ sed -i '$ iproxy_set_header Connection "upgrade";' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_set_header Host \$http_host;' /etc/nginx/conf.d/xray.conf
 sed -i '$ i}' /etc/nginx/conf.d/xray.conf
 
-sed -i '$ ilocation /proxyuntuksshwstls' /etc/nginx/conf.d/xray.conf
+sed -i '$ ilocation /' /etc/nginx/conf.d/xray.conf
 sed -i '$ i{' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_redirect off;' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_pass http://127.0.0.1:700;' /etc/nginx/conf.d/xray.conf
@@ -1258,7 +1258,7 @@ cat > /usr/local/etc/xray/trgo.json << END
 {
   "run_type": "server",
   "local_addr": "0.0.0.0",
-  "local_port": 8000,
+  "local_port": 8443,
   "remote_addr": "127.0.0.1",
   "remote_port": 2063,
   "log_level": 1,
@@ -1322,7 +1322,7 @@ END
 cat > /etc/systemd/system/trojan-go.service << END
 [Unit]
 Description=Trojan-Go Service
-Documentation=https://${GitUser}-project.net
+Documentation=https://rizood-project.net
 After=network.target nss-lookup.target
 
 [Service]
@@ -1346,8 +1346,8 @@ cat> /usr/local/etc/xray/uuid.txt <<END
 $uuid
 END
 
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8000 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 8000 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8443 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 8443 -j ACCEPT
 iptables-save > /etc/iptables.up.rules
 iptables-restore -t < /etc/iptables.up.rules
 netfilter-persistent save > /dev/null

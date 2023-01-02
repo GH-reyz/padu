@@ -189,27 +189,20 @@ echo -e   "  \e[33m Total\e[0m       \033[1;36m  $ttoday    $tyest       $tmon  
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 echo -e "\\E[0;46;30m                   ❃ TUNNELING MENU ❃                       \E[0m"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "  $green[${white}1${green}] ${green} SSH & OpenVPN Panel      [\e[1;32m${white}5${green}] ${green} XRAY Vless TCP XTLS Panel$NC"
-echo -e "  $green[${white}2${green}] ${green} XRAY Vmess WS Panel      [\e[1;32m${white}6${green}] ${green} XRAY Trojan TCP Panel Panel$NC"
-echo -e "  $green[${white}3${green}] ${green} XRAY Vless WS Panel      [\e[1;32m${white}7${green}] ${green} Trojan GO Panel$NC"
-echo -e "  $green[${white}4${green}] ${green} XRAY Trojan WS Panel     [\e[1;32m${white}0${green}] ${green} Change Password VPS"
+echo -e "  $green[${white}1${green}] ${green} SSH & OpenVPN Panel         [\e[1;32m${white}5${green}] ${green} XRAY Vless TCP XTLS$NC"
+echo -e "  $green[${white}2${green}] ${green} XRAY Vmess WS Panel         [\e[1;32m${white}6${green}] ${green} XRAY Trojan TCP Panel$NC"
+echo -e "  $green[${white}3${green}] ${green} XRAY Vless WS Panel         [\e[1;32m${white}7${green}] ${green} Trojan GO Panel$NC"
+echo -e "  $green[${white}4${green}] ${green} XRAY Trojan WS Panel        [\e[1;32m${white}0${green}] ${green} Change Password VPS"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 echo -e "\\E[0;46;30m                     ❃ SYSTEM MENU ❃                        \E[0m"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "  $green[${white}8${green}]  ${green}Change Domain ${cyan}(add-host)$NC"
-echo -e "  $green[${white}9${green}]  ${green}Reboot VPS ${red}(reboot)$NC"
-echo -e "  $green[${white}10${green}] ${green}Renew Certificate XRAY ${cyan}(cert)$NC"
-echo -e "  $green[${white}11${green}] ${green}Check VPN Status ${cyan}(status)$NC"
-echo -e "  $green[${white}12${green}] ${green}INFO All Port ${cyan}(info)$NC"
-echo -e "  $green[${white}13${green}] ${green}Restart VPN Service ${cyan}(restart)$NC"
-echo -e "  $green[${white}14${green}] ${green}Speedtest VPS ${cyan}(speedtest)$NC"
-echo -e "  $green[${white}15${green}] ${green}Check RAM ${cyan}(ram)$NC"
-echo -e "  $green[${white}16${green}] ${green}DNS Changer ${cyan}(dns)$NC"
-echo -e "  $green[${white}17${green}] ${green}Netflix Checker ${cyan}(nf)$NC"
-echo -e "  $green[${white}18${green}] ${green}Check Bandwith Server ${cyan}(vnstat)$NC"
-echo -e "  $green[${white}19${green}] ${green}Backup VPS ${cyan}(backup)$NC"
-echo -e "  $green[${white}20${green}] ${green}Restore VPS${cyan}(restore)$NC"
-echo -e "  $green[${white}21${green}] ${green}Limit Speed ${cyan}(limit)$NC"
+echo -e "  $green[${white}8${green}]  ${green}Change Domain               [\e[1;32m${white}15${green}] ${green}Check RAM$NC"
+echo -e "  $green[${white}9${green}]  ${green}Reboot VPS                  [\e[1;32m${white}16${green}] ${green}DNS Changer$NC"
+echo -e "  $green[${white}10${green}] ${green}Renew Certificate XRAY      [\e[1;32m${white}17${green}] ${green}Netflix Checker$NC"
+echo -e "  $green[${white}11${green}] ${green}Check VPN Status            [\e[1;32m${white}18${green}] ${green}Check Bandwith Server$NC"
+echo -e "  $green[${white}12${green}] ${green}INFO All Port               [\e[1;32m${white}19${green}] ${green}Backup VPS$NC"
+echo -e "  $green[${white}13${green}] ${green}Restart VPN Service         [\e[1;32m${white}20${green}] ${green}Restore VPS$NC"
+echo -e "  $green[${white}14${green}] ${green}Speedtest VPS               [\e[1;32m${white}21${green}] ${green}Limit Speed$NC"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 echo -e "      ${cyan} 〖 Xray-Core${NC} : ${status_xray} 〛          ${cyan} 〖 Nginx${NC} : ${status_nginx} 〗"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
@@ -236,6 +229,9 @@ menu-xtr
 ;;
 7)
 menu-trgo
+;;
+88)
+passwd
 ;;
 8)
 add-host

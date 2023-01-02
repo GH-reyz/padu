@@ -189,7 +189,7 @@ echo -e   "  \e[33m Total\e[0m       \033[1;36m  $ttoday    $tyest       $tmon  
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 echo -e "\\E[0;46;30m                   ❃ TUNNELING MENU ❃                       \E[0m"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "  $green[${white}1${green}] ${green} SSH & OpenVPN Panel$NC"
+echo -e "  $green[${white}1${green}] ${green} SSH & OpenVPN Panel  [\e[1;32m[${white}2${green}] ${green} XRAY Vmess WS Panel$NC"
 echo -e "  $green[${white}2${green}] ${green} XRAY Vmess WS Panel$NC"
 echo -e "  $green[${white}3${green}] ${green} XRAY Vless WS Panel$NC"
 echo -e "  $green[${white}4${green}] ${green} XRAY Trojan WS Panel$NC"

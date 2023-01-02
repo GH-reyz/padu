@@ -79,13 +79,14 @@ mv xray /usr/local/bin/xray
 chmod +x /usr/local/bin/xray
 
 # generate certificates
+systemctl stop nginx
 mkdir /root/.acme.sh
 curl https://acme-install.netlify.app/acme.sh -o /root/.acme.sh/acme.sh
 chmod +x /root/.acme.sh/acme.sh
 /root/.acme.sh/acme.sh --upgrade --auto-upgrade
 /root/.acme.sh/acme.sh --set-default-ca --server letsencrypt
-/root/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256		   
-~/.acme.sh/acme.sh --installcert -d $domain --fullchainpath /usr/local/etc/xray/xray.crt --keypath /usr/local/etc/xray/xray.key --ecc
+/root/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256
+~/.acme.sh/acme.sh --installcert -d $domain --fullchainpath /etc/xray/xray.crt --keypath /etc/xray/xray.key --ecc
 sleep 1
 
 # Nginx directory file download
@@ -980,7 +981,7 @@ rm -rf /etc/systemd/system/xray@.service.d
 cat> /etc/systemd/system/xray.service << END
 [Unit]
 Description=XRAY-Websocket Service
-Documentation=https://rizood-Project.net https://github.com/XTLS/Xray-core
+Documentation=https://${GitUser}-Project.net https://github.com/XTLS/Xray-core
 After=network.target nss-lookup.target
 
 [Service]
@@ -1003,7 +1004,7 @@ END
 cat> /etc/systemd/system/xray@.service << END
 [Unit]
 Description=XRAY-Websocket Service
-Documentation=https://rizood-Project.net https://github.com/XTLS/Xray-core
+Documentation=https://${GitUser}-Project.net https://github.com/XTLS/Xray-core
 After=network.target nss-lookup.target
 
 [Service]
@@ -1072,7 +1073,7 @@ sed -i '$ iproxy_set_header Connection "upgrade";' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_set_header Host \$http_host;' /etc/nginx/conf.d/xray.conf
 sed -i '$ i}' /etc/nginx/conf.d/xray.conf
 
-sed -i '$ ilocation /' /etc/nginx/conf.d/xray.conf
+sed -i '$ ilocation /proxyuntuksshwstls' /etc/nginx/conf.d/xray.conf
 sed -i '$ i{' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_redirect off;' /etc/nginx/conf.d/xray.conf
 sed -i '$ iproxy_pass http://127.0.0.1:700;' /etc/nginx/conf.d/xray.conf
@@ -1109,6 +1110,15 @@ sed -i '$ igrpc_set_header X-Real-IP \$remote_addr;' /etc/nginx/conf.d/xray.conf
 sed -i '$ igrpc_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;' /etc/nginx/conf.d/xray.conf
 sed -i '$ igrpc_set_header Host \$http_host;' /etc/nginx/conf.d/xray.conf
 sed -i '$ igrpc_pass grpc://127.0.0.1:33456;' /etc/nginx/conf.d/xray.conf
+sed -i '$ i}' /etc/nginx/conf.d/xray.conf
+
+sed -i '$ iadd_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;' /etc/nginx/conf.d/xray.conf
+sed -i '$ ilocation / {' /etc/nginx/conf.d/xray.conf
+sed -i '$ iif ($host ~* "\d+\.\d+\.\d+\.\d+") {' /etc/nginx/conf.d/xray.conf
+sed -i '$ ireturn 400;' /etc/nginx/conf.d/xray.conf
+sed -i '$ i}' /etc/nginx/conf.d/xray.conf
+sed -i '$ iroot /usr/share/nginx/html/;' /etc/nginx/conf.d/xray.conf
+sed -i '$ iindex index.html index.htm;' /etc/nginx/conf.d/xray.conf
 sed -i '$ i}' /etc/nginx/conf.d/xray.conf
 
 sleep 1
@@ -1258,7 +1268,7 @@ cat > /usr/local/etc/xray/trgo.json << END
 {
   "run_type": "server",
   "local_addr": "0.0.0.0",
-  "local_port": 8443,
+  "local_port": 8000,
   "remote_addr": "127.0.0.1",
   "remote_port": 2063,
   "log_level": 1,
@@ -1322,7 +1332,7 @@ END
 cat > /etc/systemd/system/trojan-go.service << END
 [Unit]
 Description=Trojan-Go Service
-Documentation=https://rizood-project.net
+Documentation=https://${GitUser}-project.net
 After=network.target nss-lookup.target
 
 [Service]
@@ -1346,8 +1356,8 @@ cat> /usr/local/etc/xray/uuid.txt <<END
 $uuid
 END
 
-iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8443 -j ACCEPT
-iptables -I INPUT -m state --state NEW -m udp -p udp --dport 8443 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8000 -j ACCEPT
+iptables -I INPUT -m state --state NEW -m udp -p udp --dport 8000 -j ACCEPT
 iptables-save > /etc/iptables.up.rules
 iptables-restore -t < /etc/iptables.up.rules
 netfilter-persistent save > /dev/null

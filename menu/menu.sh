@@ -196,17 +196,17 @@ echo -e "  $green[${white}4${green}] ${green} XRAY Trojan WS Panel        [\e[1;
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
 echo -e "\\E[0;46;30m                     ❃ SYSTEM MENU ❃                        \E[0m"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "  $green[${white}8${green}]  ${green}Change Domain               [\e[1;32m${white}15${green}] ${green}Check RAM$NC"
-echo -e "  $green[${white}9${green}]  ${green}Reboot VPS                  [\e[1;32m${white}16${green}] ${green}DNS Changer$NC"
-echo -e "  $green[${white}10${green}] ${green}Renew Certificate XRAY      [\e[1;32m${white}17${green}] ${green}Netflix Checker$NC"
+echo -e "  $green[${white}8${green}]  ${green}Change Domain               [\e[1;32m${white}15${green}] ${green}Check RAM VPS $NC"
+echo -e "  $green[${white}9${green}]  ${green}Reboot VPS                  [\e[1;32m${white}16${green}] ${green}DNS Changer Server$NC"
+echo -e "  $green[${white}10${green}] ${green}Renew Certificate XRAY      [\e[1;32m${white}17${green}] ${green}Netflix Server Checker$NC"
 echo -e "  $green[${white}11${green}] ${green}Check VPN Status            [\e[1;32m${white}18${green}] ${green}Check Bandwith Server$NC"
-echo -e "  $green[${white}12${green}] ${green}INFO All Port               [\e[1;32m${white}19${green}] ${green}Backup VPS$NC"
-echo -e "  $green[${white}13${green}] ${green}Restart VPN Service         [\e[1;32m${white}20${green}] ${green}Restore VPS$NC"
-echo -e "  $green[${white}14${green}] ${green}Speedtest VPS               [\e[1;32m${white}21${green}] ${green}Limit Speed$NC"
+echo -e "  $green[${white}12${green}] ${green}INFO All Port               [\e[1;32m${white}19${green}] ${green}Backup Data VPS$NC"
+echo -e "  $green[${white}13${green}] ${green}Restart VPN Service         [\e[1;32m${white}20${green}] ${green}Restore Data VPS$NC"
+echo -e "  $green[${white}14${green}] ${green}Speedtest VPS               [\e[1;32m${white}21${green}] ${green}Limit Speed Server$NC"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-echo -e "      ${cyan} 〖 Xray-Core${NC} : ${status_xray} 〛          ${cyan} 〖 Nginx${NC} : ${status_nginx} 〗"
+echo -e "      ${cyan} 〖 Xray-Core${NC} : ${status_xray} 〗          ${cyan} 〖 Nginx${NC} : ${status_nginx} 〗"
 echo -e "${blue}════════════════════════════════════════════════════════════${NC}"
-read -p "  $(echo -e     ${white}Enter Your Options  ${green}[${NC}${white}1-20 or x${green}]${NC} :)  "  main
+read -p "  $(echo -e     ${white}Enter Your Options  ${green}[${NC}${white}0-21 or x${green}]${NC} :)  "  main
 echo -e ""
 case $main in
 1)
@@ -230,7 +230,7 @@ menu-xtr
 7)
 menu-trgo
 ;;
-88)
+0)
 passwd
 ;;
 8)

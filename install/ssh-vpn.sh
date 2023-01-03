@@ -292,7 +292,6 @@ wget -O dns "https://raw.githubusercontent.com/${GitUser}/padu/main/system/dns.s
 wget -O nf "https://raw.githubusercontent.com/${GitUser}/padu/main/system/nf.sh"
 wget -O themes "https://raw.githubusercontent.com/${GitUser}/padu/main/menu/themes.sh"
 wget -O limit "https://raw.githubusercontent.com/GH-reyz/padu/main/limit-speed.sh"
-wget -O clearl "https://raw.githubusercontent.com/GH-reyz/padu/main/clear-log.sh"
 chmod +x menu-ssh
 chmod +x add-ssh
 chmod +x trial
@@ -313,7 +312,6 @@ chmod +x dns
 chmod +x nf
 chmod +x themes
 chmod +x limit
-chmod +x clearl
 echo "0 0 * * * root /usr/bin/delete" >> /etc/crontab
 echo "0 6 * * * root reboot" >> /etc/crontab
 echo "0 0 * * * root /usr/bin/xp" >> /etc/crontab

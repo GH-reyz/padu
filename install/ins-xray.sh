@@ -1236,7 +1236,7 @@ wget -O user-xtr "https://raw.githubusercontent.com/${GitUser}/padu/main/show-us
 
 # // OTHER FILES
 echo -e "[ ${green}INFO${NC} ] Downloading Others Files"
-wget -O certxray "https://raw.githubusercontent.com/GH-reyz/padu/main/cert.sh" && chmod +x certxray
+wget -O certxray "https://raw.githubusercontent.com/${GitUser}/padu/main/cert.sh" && chmod +x certxray
 
 sleep 1
 
